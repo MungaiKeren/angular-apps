@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Goal } from '../goal';
 import { GoalService } from '../goal-service/goal.service';
 import { AlertService } from '../alert-service/alert.service';
+import { QuoteRequestService } from '../quote-http/quote-request.service';
 import { HttpClient } from '@angular/common/http';
 import { Quote } from '../quote-class/quote';
 
@@ -37,7 +38,7 @@ export class GoalComponent implements OnInit {
     this.goals[index].showDescription = !this.goals[index].showDescription;
   }
 
-  constructor(goalService: GoalService, alertService:AlertService, private http:HttpClient) {
+  constructor(goalService: GoalService, alertService:AlertService, private http:HttpClient, private quoteService:QuoteRequestService) {
     this.goals = goalService.getGoals();
     this.alertService = alertService;
    }
@@ -55,6 +56,10 @@ export class GoalComponent implements OnInit {
       this.quote = new Quote("Winston Churchill","Never give up!")
       console.log("An error occurred")
     }
+
+    this.quoteService.quoteRequest()
+    this.quote = this.quoteService.quote
+
   }
 
 }
