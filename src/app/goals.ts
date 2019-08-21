@@ -1,3 +1,7 @@
-export class Goals {
+import { Goal } from './goal';
+
+export let goals: Goal[]= [
+       
+     ];
     
-}
+
