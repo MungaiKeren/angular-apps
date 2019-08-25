@@ -6,15 +6,16 @@
         <div class="col-md-6">
     <div *ngFor='let goal of goals;let i = index'>
         <div>
-        <h4 appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h4>
+        <h4 id={{i}} appStrikethrough>{{goal.name}} due on {{goal.completeDate|date|uppercase}}</h4>
         
-        <button (click)='toggleDetails(i)' class="btn btn-primary">Toggle Details</button>
-        <div *ngIf='goal.showDescription'>
-        <app-goal-detail  [goal]='goal' (isComplete) = 'deleteGoal($event,i)'>
+        <button (click)='goToUrl(goal.id)' class="btn btn-primary">View Details</button>
+        <button class="btn btn-outline-danger" (click)='deleteGoal(i)'>Delete Goal</button>
+        <!-- <div *ngIf='goal.showDescription'>
+         <app-goal-detail  [goal]='goal' (isComplete) = 'deleteGoal($event,i)'>
 
         </app-goal-detail>
         </div>
-    </div>
+    </div> -->
     </div> 
 
 </div>
